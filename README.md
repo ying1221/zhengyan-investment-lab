@@ -9,8 +9,6 @@
 - 站点：https://zhengyan-investment-lab.swoonymochi513.chatgpt.site （公开访问，无需登录）
 - 在线源码包：站点 `/source.zip`；本地源码为本目录。
 - 公开源码仓库：[ying1221/zhengyan-investment-lab](https://github.com/ying1221/zhengyan-investment-lab)。
-- 演示视频与完整项目包：[最新版本附件](https://github.com/ying1221/zhengyan-investment-lab/releases/latest)。
-- 部署状态与演示说明：见 [产品交付说明](docs/产品交付说明.md)。
 - 产品设计与能力边界：见 [产品设计与取舍](docs/产品设计与取舍.md)。
 
 ## 60 秒体验
@@ -72,7 +70,8 @@ node scripts/browser-qa.mjs
 
 ## 目录
 
-`src/`：界面、财报快照与规则引擎；`worker/`：HTTP API 与模型调用；`scripts/`：构建、预览、QA、演示录制；`tests/`：业务与 API 测试；`docs/`：产品指南、AI 使用记录与交付材料。
+`src/`：界面、财报快照与规则引擎；`worker/`：HTTP API 与模型调用；`scripts/`：构建、预览与 QA；`tests/`：业务与 API 测试；`docs/`：产品设计、AI 使用记录与测试说明。
+
 
 构建生成 `dist/server/index.js`，包含 UI 与 Worker。采用 Sites Worker ESM 托管，构建命令为 `node scripts/build.mjs`，不使用遗留的 bash starter 构建。
 

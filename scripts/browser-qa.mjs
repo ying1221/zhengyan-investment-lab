@@ -10,18 +10,18 @@ const context=await browser.newContext({viewport:{width:1440,height:1050},device
 const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
 const results=[];const pass=t=>{results.push({test:t,status:'passed'});console.log('PASS',t);};
 try{
- await page.goto(base);await page.getByRole('button',{name:'2024 年年度报告摘要'}).waitFor();
+ await page.goto(base);await page.getByRole('button',{name:/拆解命题/}).waitFor();
  await page.screenshot({path:'artifacts/01-workbench.png',fullPage:true});
  await page.getByRole('button',{name:/拆解命题/}).click();await page.getByRole('button',{name:/确认口径/}).waitFor();pass('拆解并展示待确认口径');
  await page.getByRole('button',{name:/确认口径/}).click();await page.getByRole('heading',{name:'有条件支持，保留归因'}).waitFor();assert.ok(await page.getByText('57.43%',{exact:true}).count());pass('主链路产出可复算指标');
  await page.screenshot({path:'artifacts/02-result.png',fullPage:true});
- await page.getByRole('tab',{name:/反对/}).click();await page.getByRole('button',{name:'证据详情与原文 ↗'}).first().click();await page.getByRole('dialog').waitFor();assert.equal(await page.getByRole('link',{name:'打开原始材料 ↗'}).getAttribute('href'),'https://pdf.dfcfw.com/pdf/H2_AN202503281648793871_1.pdf#page=4');pass('反证详情可追溯至原始PDF页码');
+ await page.getByRole('tab',{name:/反对/}).click();await page.getByRole('button',{name:'查看依据'}).first().click();await page.getByRole('dialog').waitFor();assert.equal(await page.getByRole('link',{name:'打开原始材料 ↗'}).getAttribute('href'),'https://pdf.dfcfw.com/pdf/H2_AN202503281648793871_1.pdf#page=4');pass('反证详情可追溯至原始PDF页码');
  await page.screenshot({path:'artifacts/03-evidence.png'});await page.keyboard.press('Escape');
  await page.getByRole('button',{name:'继续比较'}).click();await page.getByRole('button',{name:/用 70%/}).click();await page.getByRole('heading',{name:'未通过当前阈值'}).waitFor();pass('70%阈值重验改变判断');
  await page.getByRole('button',{name:'保存为研究任务'}).click();await page.getByRole('button',{name:/研究任务/}).first().click();await page.getByText('待补充证据',{exact:true}).waitFor();await page.reload();await page.getByRole('button',{name:/研究任务/}).first().click();await page.getByText('待补充证据',{exact:true}).waitFor();pass('研究任务与证据快照刷新后持久保留');
  await page.getByRole('button',{name:'打开验证快照'}).click();await page.getByRole('button',{name:'导出研究报告'}).click();pass('快照恢复与报告导出可操作');
- await page.getByRole('button',{name:'设置',exact:true}).click();await page.locator('#fault').selectOption('source-timeout');await page.getByRole('button',{name:'应用设置'}).click();await page.getByRole('button',{name:'修订命题后重验'}).click();await page.getByRole('button',{name:/确认口径/}).click();await page.getByRole('heading',{name:'证据不足，保留判断'}).waitFor();assert.equal(await page.locator('.metric').count(),0);pass('财报超时注入无数值结论');
- await page.getByRole('button',{name:'设置',exact:true}).click();await page.locator('#fault').selectOption('none');await page.getByRole('button',{name:'应用设置'}).click();
+ await page.getByRole('button',{name:'设置',exact:true}).click();await page.getByText('异常测试',{exact:true}).click();await page.locator('#fault').selectOption('source-timeout');await page.getByRole('button',{name:'应用设置'}).click();await page.getByRole('button',{name:'修订命题后重验'}).click();await page.getByRole('button',{name:/确认口径/}).click();await page.getByRole('heading',{name:'证据不足，保留判断'}).waitFor();assert.equal(await page.locator('.metric').count(),0);pass('财报超时注入无数值结论');
+ await page.getByRole('button',{name:'设置',exact:true}).click();await page.getByText('异常测试',{exact:true}).click();await page.locator('#fault').selectOption('none');await page.getByRole('button',{name:'应用设置'}).click();
  await page.locator('#thesis').fill('美的集团 2024 年可以买入并保证收益吗');await page.getByRole('button',{name:/拆解命题/}).click();await page.getByRole('heading',{name:'超出研究边界'}).waitFor();pass('交易与保证收益边界');
  await page.locator('#thesis').fill('宁德时代 2024 年盈利改善');await page.getByRole('button',{name:/拆解命题/}).click();await page.getByRole('alert').waitFor();pass('异公司不套用样本');
  await page.locator('#thesis').fill('美的集团 2024 年盈利改善 <img src=x onerror=alert(1)>');await page.getByRole('button',{name:/拆解命题/}).click();await page.getByRole('button',{name:/确认口径/}).click();await page.getByRole('heading',{name:'未通过当前阈值'}).waitFor();assert.equal(await page.locator('img').count(),0);pass('用户文本HTML转义');
