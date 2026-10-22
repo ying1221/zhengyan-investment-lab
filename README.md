@@ -1,17 +1,17 @@
-# 证研 · 投资命题与多证据验证
+# 证研 · AI 投资研究平台
 
 把投资直觉变成可检验命题：澄清口径、组织支持 / 反对 / 未知证据、展示原始材料与计算、保留结论反转条件，再保存为研究任务。
 
-这是同花顺 AI 产品经理笔试的可运行原型，以**美的集团 2024 年盈利归因**打通完整链路。
+这是一个面向投资研究者的 AI 产品原型，以**美的集团 2024 年盈利归因**作为可复现案例，展示从命题澄清到证据验证的完整研究流程。当前数据覆盖范围与未完成能力在下文明确列出。
 
-## 运行与提交入口
+## 在线体验与下载
 
-- 站点：https://zhengyan-investment-lab.swoonymochi513.chatgpt.site （访问权限以部署返回状态与提交清单为准）
+- 站点：https://zhengyan-investment-lab.swoonymochi513.chatgpt.site （公开访问，无需登录）
 - 在线源码包：站点 `/source.zip`；本地源码为本目录。
 - 公开源码仓库：[ying1221/zhengyan-investment-lab](https://github.com/ying1221/zhengyan-investment-lab)。
-- 演示视频与完整提交包：[v1.0.0 发布附件](https://github.com/ying1221/zhengyan-investment-lab/releases/tag/v1.0.0)。
-- 部署状态与演示说明：见 [提交清单](docs/提交清单.md)。
-- 先看 [快速上手与答辩](docs/快速上手与答辩.md)，再看 [产品设计与取舍](docs/产品设计与取舍.md)。
+- 演示视频与完整项目包：[最新版本附件](https://github.com/ying1221/zhengyan-investment-lab/releases/latest)。
+- 部署状态与演示说明：见 [产品交付说明](docs/产品交付说明.md)。
+- 先看 [快速上手与产品指南](docs/快速上手与产品指南.md)，再看 [产品设计与取舍](docs/产品设计与取舍.md)。
 
 ## 60 秒体验
 
@@ -72,7 +72,7 @@ node scripts/browser-qa.mjs
 
 ## 目录
 
-`src/`：界面、财报快照与规则引擎；`worker/`：HTTP API 与模型调用；`scripts/`：构建、预览、QA、演示录制；`tests/`：业务与 API 测试；`docs/`：产品、答辩、AI 使用记录与提交材料。
+`src/`：界面、财报快照与规则引擎；`worker/`：HTTP API 与模型调用；`scripts/`：构建、预览、QA、演示录制；`tests/`：业务与 API 测试；`docs/`：产品指南、AI 使用记录与交付材料。
 
 构建生成 `dist/server/index.js`，包含 UI 与 Worker。采用 Sites Worker ESM 托管，构建命令为 `node scripts/build.mjs`，不使用遗留的 bash starter 构建。
 
