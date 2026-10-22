@@ -8,7 +8,9 @@
 
 - 站点：https://zhengyan-investment-lab.swoonymochi513.chatgpt.site （访问权限以部署返回状态与提交清单为准）
 - 在线源码包：站点 `/source.zip`；本地源码为本目录。
-- 源代码仓库、部署状态与演示文件：见 [提交清单](docs/提交清单.md)。
+- 公开源码仓库：[ying1221/zhengyan-investment-lab](https://github.com/ying1221/zhengyan-investment-lab)。
+- 演示视频与完整提交包：[v1.0.0 发布附件](https://github.com/ying1221/zhengyan-investment-lab/releases/tag/v1.0.0)。
+- 部署状态与演示说明：见 [提交清单](docs/提交清单.md)。
 - 先看 [快速上手与答辩](docs/快速上手与答辩.md)，再看 [产品设计与取舍](docs/产品设计与取舍.md)。
 
 ## 60 秒体验
