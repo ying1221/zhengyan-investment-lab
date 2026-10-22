@@ -1,0 +1,11 @@
+import {readFile,mkdir,writeFile,copyFile} from 'node:fs/promises';
+import {sourceZip} from './source-zip.mjs';
+const root=new URL('../',import.meta.url),read=p=>readFile(new URL(p,root),'utf8');
+const [html,css,app,data,engine,worker]=await Promise.all(['src/index.html','src/style.css','src/app.js','src/data.js','src/engine.js','worker/index.js'].map(read));
+const page=html.replace('/* APP_STYLES */',()=>css).replace('/* APP_SCRIPT */',()=>app);
+const strip=s=>s.replace(/^import .*;\s*$/mg,'').replace(/^export /mg,'');
+const zip=await sourceZip();
+const output=`${strip(data)}\n${strip(engine)}\nconst PAGE = ${JSON.stringify(page)};\nconst SOURCE_ZIP = '${zip.toString('base64')}';\n${worker.replace(/^import .*;\s*$/mg,'')}`;
+await mkdir(new URL('dist/server/',root),{recursive:true});await mkdir(new URL('dist/.openai/',root),{recursive:true});
+await writeFile(new URL('dist/server/index.js',root),output);await copyFile(new URL('.openai/hosting.json',root),new URL('dist/.openai/hosting.json',root));
+console.log(`Built Worker + embedded UI (${Math.round(Buffer.byteLength(output)/1024)} KB)`);

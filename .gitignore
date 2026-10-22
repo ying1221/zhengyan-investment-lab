@@ -1,0 +1,11 @@
+dist/
+site.tar.gz
+node_modules/
+artifacts/
+.env
+.env.*
+!.env.example
+*.zip
+*.wav
+*.webm
+*.mp4

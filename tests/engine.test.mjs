@@ -1,0 +1,14 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { DATA } from '../src/data.js';
+import { analyze,metrics,pct } from '../src/engine.js';
+const input='美的集团 2024 年盈利改善主要来自主营业务';
+test('原始季度加总与全年严格一致，防止单位/录入错误',()=>{for(const key of ['revenue','profit','recurring','cashflow'])assert.equal(DATA.quarters.reduce((s,q)=>s+q[key],0),DATA.annual[2024][key]);});
+test('归因增量与现金覆盖可从原始数值复算',()=>{const m=metrics();assert.equal(m.profitDelta,4817302);assert.equal(m.recurringDelta+m.nonrecurringDelta,m.profitDelta);assert.ok(Math.abs(m.contribution-57.4286308)<0.0001);assert.ok(Math.abs(m.cashCoverage-1.570210)<0.0001);assert.equal(pct(1,0),null);});
+test('改变阈值会改变规则判定，保留主营归因缺口',()=>{const low=analyze({input,threshold:50}),high=analyze({input,threshold:70});assert.equal(low.status,'qualified');assert.equal(high.status,'not-supported');assert.equal(low.evidence.find(e=>e.id==='E2').stance,'support');assert.equal(high.evidence.find(e=>e.id==='E2').stance,'oppose');assert.ok(high.evidence.some(e=>e.id==='E6'&&e.stance==='unknown'));});
+test('接口超时不会继续产生数值指标或肯定性判断',()=>{const r=analyze({input,fault:'source-timeout'});assert.equal(r.metrics,null);assert.equal(r.status,'insufficient');assert.ok(r.evidence.every(e=>e.stance==='unknown'));});
+test('估值数据缺失不冒充可验证的完整命题',()=>{const r=analyze({input:'美的集团 2024 年估值回落但基本面未恶化'});assert.equal(r.status,'insufficient');assert.ok(r.evidence.some(e=>e.id==='E8'));});
+test('异公司/异期间/实时/反向命题均不静默套入样本结论',()=>{for(const sample of ['宁德时代 2024 年盈利改善','美的集团 2025 年盈利改善','美的集团今年盈利改善','隆基绿能盈利改善','美的集团 2024 年利润下降'])assert.equal(analyze({input:sample}).status,'out-of-scope');});
+test('买卖与收益承诺进入研究边界',()=>{for(const sample of ['美的集团 2024 年可以买入吗','美的集团 2024 年稳赚吗'])assert.equal(analyze({input:sample}).status,'boundary');});
+test('不重复计算同源财报为独立信源',()=>{const r=analyze({input});assert.equal(r.provenance.independentGroups,1);assert.equal(new Set(r.evidence.filter(e=>e.source).map(e=>e.group)).size,1);});
+test('阈值仅接受约定集合',()=>assert.throws(()=>analyze({input,threshold:99})));
