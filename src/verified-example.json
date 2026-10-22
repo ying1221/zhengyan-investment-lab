@@ -1,0 +1,207 @@
+{
+  "result": {
+    "type": "earnings",
+    "error": null,
+    "input": "美的集团 2024 年盈利改善，主要来自主营业务。",
+    "threshold": 50,
+    "revised": "美的集团 2024 年归母净利润同比增长，扣非归母净利润增量占归母净利润增量至少 50%；以扣非作为经常性盈利代理，不直接等同于主营业务。",
+    "questions": [
+      [
+        "盈利确实改善了吗？",
+        "归母与扣非净利润同比交叉检查"
+      ],
+      [
+        "改善来自经常性盈利吗？",
+        "拆分利润增量，检验贡献阈值"
+      ],
+      [
+        "现金流支持利润吗？",
+        "核对经营现金流与季度分布"
+      ],
+      [
+        "能否归因到主营业务？",
+        "检查分部利润桥与非经常项目归因"
+      ]
+    ],
+    "metrics": {
+      "revenueGrowth": 9.437849884291172,
+      "profitGrowth": 14.286213778288715,
+      "recurringGrowth": 8.389742891776987,
+      "cashGrowth": 4.505774359639836,
+      "profitDelta": 4817302,
+      "recurringDelta": 2766510,
+      "nonrecurringDelta": 2050792,
+      "contribution": 57.42861875796868,
+      "cashCoverage": 1.570210443473153,
+      "recurringShare": 92.74514932142125,
+      "q4RecurringShare": 78.45255196491786
+    },
+    "evidence": [
+      {
+        "id": "E1",
+        "stance": "support",
+        "title": "盈利增长得到两种利润口径支持",
+        "question": 0,
+        "source": "S1",
+        "group": "midea-fy2024",
+        "fact": "2024 / 2023 归母净利润：38,537,237 / 33,719,935 千元；扣非归母：35,741,418 / 32,974,908 千元。",
+        "reading": "归母同比 +14.29%，扣非同比 +8.39%；确认盈利增长，尚不能直接确认主营归因。",
+        "formula": "(本年利润 ÷ 上年利润 − 1) × 100%",
+        "strength": "直接披露 + 可复算",
+        "locator": "第 4 页 · 近三年主要会计数据"
+      },
+      {
+        "id": "E2",
+        "stance": "support",
+        "title": "经常性盈利贡献了多少增量？",
+        "question": 1,
+        "source": "S1",
+        "group": "midea-fy2024",
+        "fact": "归母增量 48.17 亿元；扣非增量 27.67 亿元。",
+        "reading": "扣非增量占比 57.43%，达到你确认的 50% 阈值。这是经常性盈利代理，非业务分部利润归因。",
+        "formula": "(35,741,418 − 32,974,908) ÷ (38,537,237 − 33,719,935) × 100%",
+        "strength": "规则计算",
+        "locator": "第 4 页 · 年度利润两种口径"
+      },
+      {
+        "id": "E3",
+        "stance": "support",
+        "title": "全年现金流覆盖利润",
+        "question": 2,
+        "source": "S1",
+        "group": "midea-fy2024",
+        "fact": "2024 年经营现金流 60,511,572 千元，2023 年 57,902,611 千元。",
+        "reading": "同比 +4.51%，为当年归母净利润的 1.57 倍；支持全年现金转换，不能据此证明每个季度稳定。",
+        "formula": "60,511,572 ÷ 38,537,237",
+        "strength": "直接披露 + 可复算",
+        "locator": "第 4 页 · 近三年主要会计数据"
+      },
+      {
+        "id": "E4",
+        "stance": "oppose",
+        "title": "非经常性损益对增量贡献不可忽略",
+        "question": 1,
+        "source": "S1",
+        "group": "midea-fy2024",
+        "fact": "归母与扣非差额：2024 年 27.96 亿元，2023 年 7.45 亿元。",
+        "reading": "该差额的增加贡献了归母利润增量的 42.57%。削弱“增长全部来自主营”的强表述；它与 E2 是同一组数据的互补拆分，不是独立信源。",
+        "formula": "[(归母24 − 扣非24) − (归母23 − 扣非23)] ÷ 归母增量",
+        "strength": "反向检验",
+        "locator": "第 4 页 · 年度利润两种口径"
+      },
+      {
+        "id": "E5",
+        "stance": "oppose",
+        "title": "全年改善不能外推为季度持续改善",
+        "question": 2,
+        "source": "S1",
+        "group": "midea-fy2024",
+        "fact": "2024 Q4 经营现金流 247,891 千元；归母净利润 6,838,123 千元。",
+        "reading": "Q4 经营现金流约 2.48 亿元，低于该季归母利润。反对“每季均有充分现金支撑”的延伸判断；缺少去年同期与营运资本解释，不能认定基本面恶化。",
+        "formula": "247,891 ÷ 100,000 = 2.47891 亿元",
+        "strength": "时间粒度冲突",
+        "locator": "第 4 页 · 分季度主要会计数据"
+      },
+      {
+        "id": "E6",
+        "stance": "unknown",
+        "title": "“扣非”不能直接等同于“主营”",
+        "question": 3,
+        "source": "S2",
+        "group": "midea-fy2024",
+        "fact": "已结构化证据包没有分部利润增量、投资收益与汇兑等完整利润桥。",
+        "reading": "没有分部利润桥就无法证明具体主营板块贡献。证据缺口限制结论强度，不能因为扣非增长就补写主营因果。",
+        "formula": "需要：分部经营利润桥 + 非经常性损益明细 + 合并范围变化",
+        "strength": "明确缺口",
+        "locator": "全文财务附注待提取，当前无已核验结论"
+      }
+    ],
+    "status": "qualified",
+    "fault": "none",
+    "title": "有条件支持，保留归因",
+    "summary": "扣非利润增量贡献 57.43%，达到 50% 阈值；非经常性损益增量贡献 42.57%。能验证经常性盈利改善，尚不能完成主营业务因果归因。",
+    "conflict": "冲突按命题强度与时间粒度解释：全年现金覆盖良好，与 Q4 现金转换偏低可以同时成立；归母和扣非增速不同，源于统计口径，不能平均后抹平。所有财务证据同源，不按证据条数投票。",
+    "triggers": [
+      "若补充或重述后扣非增量占比低于 50%，撤回对应阈值下的支持。",
+      "若分部利润桥表明主要增量来自非主营因素，撤回“主营驱动”归因。",
+      "若同口径季度同比显示现金转换持续恶化，下调盈利质量判断。"
+    ],
+    "provenance": {
+      "independentGroups": 1,
+      "documents": 2,
+      "latestPeriod": "2024-12-31",
+      "asOf": "2025-03-29",
+      "verified": "2026-10-22"
+    },
+    "trace": [
+      "scope.checked",
+      "claim.revised",
+      "disclosure.snapshot.loaded",
+      "metrics.recomputed",
+      "counterevidence.checked",
+      "citations.attached"
+    ],
+    "engine": "deterministic",
+    "generatedAt": "2026-10-22T09:41:25.734Z",
+    "runId": "3df25a1b-21bd-4e99-b562-8731fe2fe265",
+    "model": {
+      "status": "ok",
+      "provider": "DeepSeek",
+      "model": "deepseek-flash",
+      "elapsedMs": 1955,
+      "diagnostics": {
+        "stage": "complete",
+        "thinking": "disabled",
+        "timeoutMs": 45000,
+        "httpStatus": 200,
+        "finishReason": "stop",
+        "outputChars": 413
+      },
+      "output": {
+        "subquestions": [
+          "2024年归母净利润是否同比增长？",
+          "扣非归母净利润增量占归母净利润增量是否达到至少50%？",
+          "证据是否足以支持“增长来自主营业务”的强表述，存在哪些反证与缺口？"
+        ],
+        "explanation": "归母净利润由337.20亿元增至385.37亿元，同比+14.29%；扣非由329.75亿元增至357.41亿元，增量27.67亿元占归母增量48.17亿元的57.43%，达到50%阈值[E1][E2]。但扣非仅为经常性盈利代理，不等于主营业务利润[E2]。反证方面，归母与扣非差额扩大贡献了归母增量的42.57%，削弱“全部来自主营”的强表述[E4]；Q4经营现金流低于当季归母利润，反对“每季现金充分支撑”[E5]。数据缺口：无分部利润桥及投资收益、汇兑等完整利润桥，无法证明具体主营板块贡献[E6]。",
+        "citations": [
+          "E1",
+          "E2",
+          "E4",
+          "E5",
+          "E6"
+        ]
+      },
+      "message": "大模型已调用；引用 ID 已校验，正文仍需人工核对。"
+    }
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "name": "2024 年年度报告摘要",
+      "publisher": "美的集团股份有限公司",
+      "host": "东方财富公告 PDF 镜像",
+      "page": 4,
+      "group": "midea-fy2024",
+      "url": "https://pdf.dfcfw.com/pdf/H2_AN202503281648793871_1.pdf",
+      "disclosureUrl": "https://data.eastmoney.com/notices/detail/000333/AN202503281648793871.html",
+      "locator": "第 4 页 · 二、3（1）近三年主要会计数据和财务指标；3（2）分季度主要会计数据"
+    },
+    {
+      "id": "S2",
+      "name": "2024 年年度报告全文",
+      "publisher": "美的集团股份有限公司",
+      "host": "公司投资者关系公告分发页",
+      "group": "midea-fy2024",
+      "url": "https://asia.tools.euroland.com/tools/Pressreleases/GetPressRelease/?ID=7370767&companycode=cn-000333&lang=zh-CN",
+      "locator": "进一步核对财务附注；本原型尚未提取分部利润桥"
+    }
+  ],
+  "archive": {
+    "kind": "verified-historical-run",
+    "reviewed": "2026-10-22",
+    "runId": "3df25a1b-21bd-4e99-b562-8731fe2fe265",
+    "label": "真实模型调用归档 · 2026-10-22 17:41（北京时间）",
+    "notice": "这是已完成研究的历史记录；查看归档不发起新的模型请求。"
+  }
+}

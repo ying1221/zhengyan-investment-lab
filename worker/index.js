@@ -21,6 +21,7 @@ export default {async fetch(request,env){
  if(url.pathname==='/'&&request.method==='GET')return new Response(PAGE,{headers:{'content-type':'text/html; charset=utf-8','cache-control':'no-cache','x-content-type-options':'nosniff','referrer-policy':'no-referrer','content-security-policy':"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'"}});
  if(url.pathname==='/api/health'&&request.method==='GET')return json({ok:true,mode:env.DEEPSEEK_API_KEY?'model-available':'rules-only',dataPeriod:'2024',financialFeed:'verified-public-disclosure-snapshot'});
  if(url.pathname==='/api/sources'&&request.method==='GET')return json(DATA);
+ if(url.pathname==='/api/example'&&request.method==='GET')return json(VERIFIED_EXAMPLE);
  if(!['/api/plan','/api/analyze'].includes(url.pathname))return json({error:'Not found'},404);
  if(request.method!=='POST')return json({error:'Method not allowed'},405);
  const origin=request.headers.get('origin');if(origin&&origin!==url.origin)return json({error:'跨站请求已拒绝'},403);
