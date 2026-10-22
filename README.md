@@ -11,7 +11,7 @@
 - 公开源码仓库：[ying1221/zhengyan-investment-lab](https://github.com/ying1221/zhengyan-investment-lab)。
 - 演示视频与完整项目包：[最新版本附件](https://github.com/ying1221/zhengyan-investment-lab/releases/latest)。
 - 部署状态与演示说明：见 [产品交付说明](docs/产品交付说明.md)。
-- 先看 [快速上手与产品指南](docs/快速上手与产品指南.md)，再看 [产品设计与取舍](docs/产品设计与取舍.md)。
+- 产品设计与能力边界：见 [产品设计与取舍](docs/产品设计与取舍.md)。
 
 ## 60 秒体验
 
